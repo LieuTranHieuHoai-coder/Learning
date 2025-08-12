@@ -288,10 +288,129 @@
             margin-bottom: 3px;
         }
 
-        @media (max-width: 1600px) {
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .mindmap-container {
+                min-width: 100%;
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                padding: 20px 15px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                position: static;
+                overflow: visible;
+            }
+
+            .central-node {
+                position: static;
+                transform: none;
+                width: 100%;
+                height: 80px;
+                margin: 0 auto 30px auto;
+                order: 0;
+            }
+
+            .branch {
+                position: static;
+                transform: none !important;
+                width: 100% !important;
+                height: auto !important;
+                margin-bottom: 20px;
+                max-width: none;
+            }
+
+            .vocab-time { order: 1; }
+            .vocab-education { order: 2; }
+            .vocab-career { order: 3; }
+            .vocab-grammar { order: 4; }
+            .sample-sentences { order: 5; }
+            .grammar-point { order: 6; }
+            .dialogue { 
+                order: 7; 
+                height: auto;
+                max-height: none;
+            }
+            .practice { order: 8; }
+
+            .connection {
+                display: none;
+            }
+
+            .floating-tips {
+                position: static;
+                order: 9;
+                margin-top: 20px;
+                max-width: 100%;
+            }
+
+            .dialogue .branch-content {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+
+            .dialogue-line {
+                margin-bottom: 15px;
+                padding: 10px;
+            }
+
+            .branch-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .branch-content {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .chinese {
+                font-size: 15px;
+            }
+
+            .pinyin {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 1600px) and (min-width: 769px) {
             .mindmap-container {
                 min-width: 100%;
                 overflow-x: scroll;
+            }
+        }
+
+        /* Tablet responsive */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .mindmap-container {
+                min-width: 1200px;
+                height: 800px;
+            }
+
+            .branch {
+                font-size: 11px;
+            }
+
+            .vocab-time, .vocab-education, .vocab-career, .vocab-grammar {
+                width: 160px;
+            }
+
+            .dialogue {
+                width: 240px;
+                height: 350px;
+            }
+
+            .sample-sentences {
+                width: 150px;
+            }
+
+            .grammar-point, .practice {
+                width: 180px;
             }
         }
     </style>
@@ -474,11 +593,27 @@
     </div>
 
     <script>
-        // Thêm hiệu ứng tương tác
+        // Mobile-friendly interactions
         document.querySelectorAll('.branch').forEach(branch => {
+            // Touch and click events
             branch.addEventListener('click', function() {
-                this.style.transform = 'scale(1.1)';
+                this.style.transform = window.innerWidth <= 768 ? 'scale(1.02)' : 'scale(1.1)';
                 this.style.zIndex = '20';
+                setTimeout(() => {
+                    this.style.transform = window.innerWidth <= 768 ? 'scale(1)' : 'scale(1)';
+                    this.style.zIndex = '5';
+                }, 200);
+            });
+
+            // Touch events for mobile
+            branch.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(1.02)';
+                this.style.zIndex = '20';
+            });
+
+            branch.addEventListener('touchend', function(e) {
+                e.preventDefault();
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
                     this.style.zIndex = '5';
@@ -486,26 +621,35 @@
             });
         });
 
-        // Hiệu ứng hover cho các kết nối
-        document.querySelectorAll('.connection').forEach(conn => {
-            conn.addEventListener('mouseenter', function() {
-                this.style.background = 'linear-gradient(90deg, #CD853F, #DEB887)';
-                this.style.height = '4px';
+        // Connection effects only for desktop
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.connection').forEach(conn => {
+                conn.addEventListener('mouseenter', function() {
+                    this.style.background = 'linear-gradient(90deg, #CD853F, #DEB887)';
+                    this.style.height = '4px';
+                });
+                
+                conn.addEventListener('mouseleave', function() {
+                    this.style.background = 'linear-gradient(90deg, #D2B48C, #CD853F)';
+                    this.style.height = '3px';
+                });
             });
-            
-            conn.addEventListener('mouseleave', function() {
-                this.style.background = 'linear-gradient(90deg, #D2B48C, #CD853F)';
-                this.style.height = '3px';
+
+            // Central node hover effect for desktop only
+            document.querySelector('.central-node').addEventListener('mouseenter', function() {
+                this.style.transform = 'translate(-50%, -50%) scale(1.1)';
             });
-        });
 
-        // Thêm hiệu ứng hover cho central node
-        document.querySelector('.central-node').addEventListener('mouseenter', function() {
-            this.style.transform = 'translate(-50%, -50%) scale(1.1)';
-        });
+            document.querySelector('.central-node').addEventListener('mouseleave', function() {
+                this.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        }
 
-        document.querySelector('.central-node').addEventListener('mouseleave', function() {
-            this.style.transform = 'translate(-50%, -50%) scale(1)';
+        // Handle orientation change
+        window.addEventListener('orientationchange', function() {
+            setTimeout(function() {
+                window.location.reload();
+            }, 100);
         });
     </script>
 </body>
