@@ -19,6 +19,7 @@
             overflow-x: auto;
         }
 
+        /* Desktop Mindmap Layout */
         .mindmap-container {
             width: 100%;
             min-width: 1600px;
@@ -107,7 +108,7 @@
             font-weight: 500;
         }
 
-        /* Định vị các nhánh - Tầng 1 (gần trung tâm) */
+        /* Desktop Branch Positions */
         .vocab-time {
             top: 25%;
             left: 20%;
@@ -144,7 +145,6 @@
             border: 2px solid #D2B48C;
         }
 
-        /* Tầng 2 (xa hơn) */
         .sample-sentences {
             top: 50%;
             left: 3%;
@@ -164,18 +164,6 @@
             color: #654321;
             border: 2px solid #D2B48C;
             overflow-y: auto;
-        }
-
-        .dialogue .branch-content {
-            font-size: 11px;
-            line-height: 1.3;
-        }
-
-        .dialogue-line {
-            margin-bottom: 12px;
-            padding: 8px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
         }
 
         .grammar-point {
@@ -198,7 +186,7 @@
             border: 2px solid #D2B48C;
         }
 
-        /* Đường kết nối */
+        /* Desktop Connections */
         .connection {
             position: absolute;
             height: 3px;
@@ -282,99 +270,176 @@
             100% { opacity: 1; }
         }
 
+        /* Mobile Feed Layout */
+        .mobile-container {
+            display: none;
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-header {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .mobile-header h1 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .mobile-header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .mobile-feed {
+            padding: 10px;
+            max-width: 100%;
+        }
+
+        .mobile-card {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-card-header {
+            background: linear-gradient(135deg, #DEB887, #F5DEB3);
+            padding: 15px 20px;
+            font-weight: bold;
+            color: #8B4513;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-card-content {
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .vocab-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #8B4513;
+        }
+
+        .vocab-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .mobile-chinese {
+            color: #8B0000;
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .mobile-pinyin {
+            color: #4682B4;
+            font-style: italic;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .mobile-meaning {
+            color: #228B22;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .dialogue-card {
+            background: linear-gradient(135deg, #fff8f0, #fefefe);
+        }
+
+        .dialogue-item {
+            background: #f0f8ff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4682B4;
+        }
+
         .speaker-name {
             font-weight: bold;
             color: #8B4513;
-            margin-bottom: 3px;
+            font-size: 14px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
         }
 
-        /* Mobile Responsive */
+        .grammar-example {
+            background: #fff5f0;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #CD853F;
+        }
+
+        .practice-item {
+            background: #f0fff0;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #228B22;
+        }
+
+        .mobile-tips {
+            background: linear-gradient(135deg, #fff8dc, #f5f5dc);
+            border: 2px solid #ddd;
+        }
+
+        .tip-item {
+            padding: 8px 0;
+            color: #654321;
+            font-size: 14px;
+        }
+
+        .tip-item:before {
+            content: "💡 ";
+            margin-right: 5px;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 0;
+                background: #f8f9fa;
             }
-
+            
             .mindmap-container {
-                min-width: 100%;
-                width: 100%;
-                height: auto;
-                min-height: 100vh;
-                padding: 20px 15px;
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-                position: static;
-                overflow: visible;
-            }
-
-            .central-node {
-                position: static;
-                transform: none;
-                width: 100%;
-                height: 80px;
-                margin: 0 auto 30px auto;
-                order: 0;
-            }
-
-            .branch {
-                position: static;
-                transform: none !important;
-                width: 100% !important;
-                height: auto !important;
-                margin-bottom: 20px;
-                max-width: none;
-            }
-
-            .vocab-time { order: 1; }
-            .vocab-education { order: 2; }
-            .vocab-career { order: 3; }
-            .vocab-grammar { order: 4; }
-            .sample-sentences { order: 5; }
-            .grammar-point { order: 6; }
-            .dialogue { 
-                order: 7; 
-                height: auto;
-                max-height: none;
-            }
-            .practice { order: 8; }
-
-            .connection {
                 display: none;
             }
-
-            .floating-tips {
-                position: static;
-                order: 9;
-                margin-top: 20px;
-                max-width: 100%;
+            
+            .mobile-container {
+                display: block;
             }
+        }
 
-            .dialogue .branch-content {
-                font-size: 12px;
-                line-height: 1.4;
-            }
-
-            .dialogue-line {
-                margin-bottom: 15px;
-                padding: 10px;
-            }
-
-            .branch-title {
-                font-size: 16px;
-                margin-bottom: 10px;
-            }
-
-            .branch-content {
-                font-size: 13px;
-                line-height: 1.5;
-            }
-
-            .chinese {
-                font-size: 15px;
-            }
-
-            .pinyin {
-                font-size: 13px;
+        @media (min-width: 769px) {
+            .mobile-container {
+                display: none;
             }
         }
 
@@ -385,39 +450,16 @@
             }
         }
 
-        /* Tablet responsive */
-        @media (max-width: 1024px) and (min-width: 769px) {
-            .mindmap-container {
-                min-width: 1200px;
-                height: 800px;
-            }
-
-            .branch {
-                font-size: 11px;
-            }
-
-            .vocab-time, .vocab-education, .vocab-career, .vocab-grammar {
-                width: 160px;
-            }
-
-            .dialogue {
-                width: 240px;
-                height: 350px;
-            }
-
-            .sample-sentences {
-                width: 150px;
-            }
-
-            .grammar-point, .practice {
-                width: 180px;
-            }
+        .speaker-name-mobile {
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 3px;
         }
     </style>
 </head>
 <body>
+    <!-- Desktop Mindmap -->
     <div class="mindmap-container">
-        <!-- Nút trung tâm -->
         <div class="central-node">
             <div>
                 Bài 3: 询问对方经历<br>
@@ -425,7 +467,6 @@
             </div>
         </div>
 
-        <!-- Đường kết nối -->
         <div class="connection conn1"></div>
         <div class="connection conn2"></div>
         <div class="connection conn3"></div>
@@ -435,7 +476,6 @@
         <div class="connection conn7"></div>
         <div class="connection conn8"></div>
 
-        <!-- Các nhánh từ vựng -->
         <div class="branch vocab-time">
             <div class="branch-title">⏰ THỜI GIAN</div>
             <div class="branch-content">
@@ -477,7 +517,6 @@
             </div>
         </div>
 
-        <!-- Mẫu câu -->
         <div class="branch sample-sentences">
             <div class="branch-title">💬 MẪU CÂU</div>
             <div class="branch-content">
@@ -486,83 +525,24 @@
             </div>
         </div>
 
-        <!-- Đối thoại đầy đủ -->
         <div class="branch dialogue">
             <div class="branch-title">🗣️ HỘI THOẠI - ALAN & MARY</div>
             <div class="branch-content">
-                <div class="dialogue-line">
-                    <div class="speaker-name">Mary:</div>
-                    <div><span class="chinese">艾伦，你在哪儿长大的？</span></div>
-                    <div><span class="pinyin">Āilún, nǐ zài nǎr zhǎngdà de?</span></div>
-                    <div><span class="meaning">Alan, bạn lớn lên ở đâu?</span></div>
-                </div>
-
-                <div class="dialogue-line">
-                    <div class="speaker-name">Alan:</div>
-                    <div><span class="chinese">我是在西班牙长大的。</span></div>
-                    <div><span class="pinyin">Wǒ shì zài Xībānyá zhǎngdà de.</span></div>
-                    <div><span class="meaning">Tôi lớn lên ở Tây Ban Nha.</span></div>
-                </div>
-
-                <div class="dialogue-line">
-                    <div class="speaker-name">Mary:</div>
-                    <div><span class="chinese">你也是在西班牙出生的吗？</span></div>
-                    <div><span class="pinyin">Nǐ yě shì zài Xībānyá chūshēng de ma?</span></div>
-                    <div><span class="meaning">Bạn cũng sinh ra ở Tây Ban Nha à?</span></div>
-                </div>
-
-                <div class="dialogue-line">
-                    <div class="speaker-name">Alan:</div>
-                    <div><span class="chinese">不是，我是在英国出生的。</span></div>
-                    <div><span class="pinyin">Bú shì, wǒ shì zài Yīngguó chūshēng de.</span></div>
-                    <div><span class="meaning">Không, tôi sinh ra ở Anh.</span></div>
-                </div>
-
-                <div class="dialogue-line">
-                    <div class="speaker-name">Mary:</div>
-                    <div><span class="chinese">那你是什么时候来这儿的？</span></div>
-                    <div><span class="pinyin">Nà nǐ shì shénme shíhou lái zhèr de?</span></div>
-                    <div><span class="meaning">Vậy bạn đến đây khi nào?</span></div>
-                </div>
-
-                <div class="dialogue-line">
-                    <div class="speaker-name">Alan:</div>
-                    <div><span class="chinese">2012年，我来这儿上大学。</span></div>
-                    <div><span class="pinyin">Èr líng yī èr nián, wǒ lái zhèr shàng dàxué.</span></div>
-                    <div><span class="meaning">Năm 2012, tôi đến đây học đại học.</span></div>
-                </div>
-
-                <div class="dialogue-line">
-                    <div class="speaker-name">Mary:</div>
-                    <div><span class="chinese">你大学的专业是什么？</span></div>
-                    <div><span class="pinyin">Nǐ dàxué de zhuānyè shì shénme?</span></div>
-                    <div><span class="meaning">Chuyên ngành đại học của bạn là gì?</span></div>
-                </div>
-
-                <div class="dialogue-line">
-                    <div class="speaker-name">Alan:</div>
-                    <div><span class="chinese">新闻。毕业以后我在一家电视台当了五年记者。</span></div>
-                    <div><span class="pinyin">Xīnwén. Bìyè yǐhòu wǒ zài yì jiā diànshìtái dāngle wǔ nián jìzhě.</span></div>
-                    <div><span class="meaning">Ngành báo chí. Sau khi tốt nghiệp, tôi làm phóng viên ở một đài truyền hình trong 5 năm.</span></div>
-                </div>
-
-                <div class="dialogue-line">
-                    <div class="speaker-name">Mary:</div>
-                    <div><span class="chinese">那现在你怎么不当记者了？</span></div>
-                    <div><span class="pinyin">Nà xiànzài nǐ zěnme bù dāng jìzhě le?</span></div>
-                    <div><span class="meaning">Vậy sao bây giờ bạn không làm phóng viên nữa?</span></div>
-                </div>
-
-                <div class="dialogue-line">
-                    <div class="speaker-name">Alan:</div>
-                    <div><span class="chinese">当记者太辛苦了，常常要出差。我现在想当作家。</span></div>
-                    <div><span class="pinyin">Dāng jìzhě tài xīnkǔ le, chángcháng yào chūchāi. Wǒ xiànzài xiǎng dāng zuòjiā.</span></div>
-                    <div><span class="meaning">Làm phóng viên vất vả quá, thường xuyên phải đi công tác. Giờ tôi muốn trở thành nhà văn.</span></div>
+                <div style="font-size: 10px; line-height: 1.2;">
+                    <div style="margin-bottom: 8px;"><strong>Mary:</strong> 艾伦，你在哪儿长大的？</div>
+                    <div style="margin-bottom: 8px;"><strong>Alan:</strong> 我是在西班牙长大的。</div>
+                    <div style="margin-bottom: 8px;"><strong>Mary:</strong> 你也是在西班牙出生的吗？</div>
+                    <div style="margin-bottom: 8px;"><strong>Alan:</strong> 不是，我是在英国出生的。</div>
+                    <div style="margin-bottom: 8px;"><strong>Mary:</strong> 那你是什么时候来这儿的？</div>
+                    <div style="margin-bottom: 8px;"><strong>Alan:</strong> 2012年，我来这儿上大学。</div>
+                    <div style="margin-bottom: 8px;"><strong>Mary:</strong> 你大学的专业是什么？</div>
+                    <div style="margin-bottom: 8px;"><strong>Alan:</strong> 新闻。毕业以后我在一家电视台当了五年记者。</div>
+                    <div style="margin-bottom: 8px;"><strong>Mary:</strong> 那现在你怎么不当记者了？</div>
+                    <div><strong>Alan:</strong> 当记者太辛苦了，常常要出差。我现在想当作家。</div>
                 </div>
             </div>
         </div>
 
-        <!-- Điểm ngữ pháp -->
         <div class="branch grammar-point">
             <div class="branch-title">🔑 NGỮ PHÁP</div>
             <div class="branch-content">
@@ -573,7 +553,6 @@
             </div>
         </div>
 
-        <!-- Thực hành -->
         <div class="branch practice">
             <div class="branch-title">🎯 BÀI TẬP</div>
             <div class="branch-content">
@@ -583,7 +562,6 @@
             </div>
         </div>
 
-        <!-- Ghi chú -->
         <div class="floating-tips">
             💡 <strong>Mẹo học:</strong><br>
             • Tập trung vào thanh điệu<br>
@@ -592,65 +570,146 @@
         </div>
     </div>
 
-    <script>
-        // Mobile-friendly interactions
-        document.querySelectorAll('.branch').forEach(branch => {
-            // Touch and click events
-            branch.addEventListener('click', function() {
-                this.style.transform = window.innerWidth <= 768 ? 'scale(1.02)' : 'scale(1.1)';
-                this.style.zIndex = '20';
-                setTimeout(() => {
-                    this.style.transform = window.innerWidth <= 768 ? 'scale(1)' : 'scale(1)';
-                    this.style.zIndex = '5';
-                }, 200);
-            });
+    <!-- Mobile Feed Layout -->
+    <div class="mobile-container">
+        <div class="mobile-header">
+            <h1>询问对方经历</h1>
+            <div class="subtitle">Bài 3: Hỏi về kinh nghiệm</div>
+        </div>
 
-            // Touch events for mobile
-            branch.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                this.style.transform = 'scale(1.02)';
-                this.style.zIndex = '20';
-            });
+        <div class="mobile-feed">
+            <!-- Từ vựng thời gian -->
+            <div class="mobile-card">
+                <div class="mobile-card-header">
+                    ⏰ TỪ VỰNG - THỜI GIAN
+                </div>
+                <div class="mobile-card-content">
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">长大</span>
+                        <span class="mobile-pinyin">zhǎngdà</span>
+                        <span class="mobile-meaning">trưởng thành</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">出生</span>
+                        <span class="mobile-pinyin">chūshēng</span>
+                        <span class="mobile-meaning">được sinh ra</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">时候</span>
+                        <span class="mobile-pinyin">shíhou</span>
+                        <span class="mobile-meaning">lúc, khi</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">来</span>
+                        <span class="mobile-pinyin">lái</span>
+                        <span class="mobile-meaning">đến</span>
+                    </div>
+                </div>
+            </div>
 
-            branch.addEventListener('touchend', function(e) {
-                e.preventDefault();
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                    this.style.zIndex = '5';
-                }, 200);
-            });
-        });
+            <!-- Từ vựng giáo dục -->
+            <div class="mobile-card">
+                <div class="mobile-card-header">
+                    🎓 TỪ VỰNG - GIÁO DỤC
+                </div>
+                <div class="mobile-card-content">
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">大学</span>
+                        <span class="mobile-pinyin">dàxué</span>
+                        <span class="mobile-meaning">đại học</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">专业</span>
+                        <span class="mobile-pinyin">zhuānyè</span>
+                        <span class="mobile-meaning">chuyên ngành</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">毕业</span>
+                        <span class="mobile-pinyin">bìyè</span>
+                        <span class="mobile-meaning">tốt nghiệp</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">新闻</span>
+                        <span class="mobile-pinyin">xīnwén</span>
+                        <span class="mobile-meaning">tin tức</span>
+                    </div>
+                </div>
+            </div>
 
-        // Connection effects only for desktop
-        if (window.innerWidth > 768) {
-            document.querySelectorAll('.connection').forEach(conn => {
-                conn.addEventListener('mouseenter', function() {
-                    this.style.background = 'linear-gradient(90deg, #CD853F, #DEB887)';
-                    this.style.height = '4px';
-                });
-                
-                conn.addEventListener('mouseleave', function() {
-                    this.style.background = 'linear-gradient(90deg, #D2B48C, #CD853F)';
-                    this.style.height = '3px';
-                });
-            });
+            <!-- Từ vựng nghề nghiệp -->
+            <div class="mobile-card">
+                <div class="mobile-card-header">
+                    💼 TỪ VỰNG - NGHỀ NGHIỆP
+                </div>
+                <div class="mobile-card-content">
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">记者</span>
+                        <span class="mobile-pinyin">jìzhě</span>
+                        <span class="mobile-meaning">phóng viên</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">作家</span>
+                        <span class="mobile-pinyin">zuòjiā</span>
+                        <span class="mobile-meaning">nhà văn</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">电视台</span>
+                        <span class="mobile-pinyin">diànshìtái</span>
+                        <span class="mobile-meaning">đài truyền hình</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">辛苦</span>
+                        <span class="mobile-pinyin">xīnkǔ</span>
+                        <span class="mobile-meaning">vất vả</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">出差</span>
+                        <span class="mobile-pinyin">chūchāi</span>
+                        <span class="mobile-meaning">đi công tác</span>
+                    </div>
+                </div>
+            </div>
 
-            // Central node hover effect for desktop only
-            document.querySelector('.central-node').addEventListener('mouseenter', function() {
-                this.style.transform = 'translate(-50%, -50%) scale(1.1)';
-            });
+            <!-- Ngữ pháp -->
+            <div class="mobile-card">
+                <div class="mobile-card-header">
+                    🔑 ĐIỂM NGỮ PHÁP
+                </div>
+                <div class="mobile-card-content">
+                    <div class="grammar-example">
+                        <strong>Cấu trúc: 是...的</strong><br>
+                        <small>Dùng để nhấn mạnh nơi chốn, thời gian</small><br><br>
+                        <span class="mobile-chinese">我是在英国出生的</span><br>
+                        <span class="mobile-pinyin">Wǒ shì zài Yīngguó chūshēng de</span><br>
+                        <span class="mobile-meaning">Tôi được sinh ra ở Anh</span>
+                    </div>
+                    
+                    <div class="grammar-example">
+                        <strong>Cấu trúc: 在...当...</strong><br>
+                        <small>Dùng để nói về nơi làm việc</small><br><br>
+                        <span class="mobile-chinese">在电视台当记者</span><br>
+                        <span class="mobile-pinyin">zài diànshìtái dāng jìzhě</span><br>
+                        <span class="mobile-meaning">làm phóng viên ở đài truyền hình</span>
+                    </div>
 
-            document.querySelector('.central-node').addEventListener('mouseleave', function() {
-                this.style.transform = 'translate(-50%, -50%) scale(1)';
-            });
-        }
-
-        // Handle orientation change
-        window.addEventListener('orientationchange', function() {
-            setTimeout(function() {
-                window.location.reload();
-            }, 100);
-        });
-    </script>
-</body>
-</html>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">那</span>
+                        <span class="mobile-pinyin">nà</span>
+                        <span class="mobile-meaning">vậy, đó</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">当</span>
+                        <span class="mobile-pinyin">dāng</span>
+                        <span class="mobile-meaning">làm, đảm nhiệm</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">家</span>
+                        <span class="mobile-pinyin">jiā</span>
+                        <span class="mobile-meaning">lượng từ (công ty)</span>
+                    </div>
+                    <div class="vocab-item">
+                        <span class="mobile-chinese">想</span>
+                        <span class="mobile-pinyin">xiǎng</span>
+                        <span class="mobile-meaning">muốn</span>
+                    </div>
+                </div>
