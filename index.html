@@ -21,8 +21,8 @@
 
         .mindmap-container {
             width: 100%;
-            min-width: 1200px;
-            height: 800px;
+            min-width: 1600px;
+            height: 1000px;
             position: relative;
             background: linear-gradient(135deg, rgba(139, 69, 19, 0.3), rgba(160, 82, 45, 0.2));
             border-radius: 20px;
@@ -36,10 +36,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 200px;
-            height: 80px;
+            width: 220px;
+            height: 90px;
             background: linear-gradient(45deg, #8B4513, #A0522D);
-            border-radius: 40px;
+            border-radius: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -50,6 +50,7 @@
             box-shadow: 0 8px 32px rgba(139, 69, 19, 0.5);
             border: 2px solid #D2B48C;
             animation: pulse 2s infinite;
+            z-index: 10;
         }
 
         @keyframes pulse {
@@ -66,12 +67,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid #D2B48C;
+            z-index: 5;
         }
 
         .branch:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 30px rgba(139, 69, 19, 0.4);
             border-color: #CD853F;
+            z-index: 15;
         }
 
         .branch-title {
@@ -104,78 +107,92 @@
             font-weight: 500;
         }
 
-        /* Định vị các nhánh - Tông màu gỗ */
+        /* Định vị các nhánh - Tầng 1 (gần trung tâm) */
         .vocab-time {
-            top: 15%;
-            left: 15%;
-            width: 180px;
+            top: 25%;
+            left: 20%;
+            width: 190px;
             background: linear-gradient(135deg, #DEB887, #F5DEB3);
             color: #654321;
             border: 2px solid #CD853F;
         }
 
         .vocab-education {
-            top: 15%;
-            right: 15%;
-            width: 180px;
+            top: 25%;
+            right: 20%;
+            width: 190px;
             background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
             color: #654321;
             border: 2px solid #D2B48C;
         }
 
         .vocab-career {
-            bottom: 15%;
-            left: 15%;
-            width: 180px;
+            bottom: 25%;
+            left: 20%;
+            width: 190px;
             background: linear-gradient(135deg, #DEB887, #F5DEB3);
             color: #654321;
             border: 2px solid #CD853F;
         }
 
         .vocab-grammar {
-            bottom: 15%;
-            right: 15%;
-            width: 180px;
+            bottom: 25%;
+            right: 20%;
+            width: 190px;
             background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
             color: #654321;
             border: 2px solid #D2B48C;
         }
 
+        /* Tầng 2 (xa hơn) */
         .sample-sentences {
             top: 50%;
-            left: 5%;
+            left: 3%;
             transform: translateY(-50%);
-            width: 160px;
+            width: 180px;
             background: linear-gradient(135deg, #DEB887, #F5DEB3);
             color: #654321;
             border: 2px solid #CD853F;
         }
 
         .dialogue {
-            top: 50%;
-            right: 5%;
-            transform: translateY(-50%);
-            width: 160px;
+            top: 30%;
+            right: 3%;
+            width: 280px;
+            height: 400px;
             background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
             color: #654321;
             border: 2px solid #D2B48C;
+            overflow-y: auto;
+        }
+
+        .dialogue .branch-content {
+            font-size: 11px;
+            line-height: 1.3;
+        }
+
+        .dialogue-line {
+            margin-bottom: 12px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
         }
 
         .grammar-point {
-            top: 10%;
+            top: 8%;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px;
+            width: 220px;
             background: linear-gradient(135deg, #DEB887, #F5DEB3);
             color: #654321;
             border: 2px solid #CD853F;
         }
 
         .practice {
-            bottom: 10%;
+            bottom: 8%;
             left: 50%;
             transform: translateX(-50%);
-            width: 200px;
+            width: 220px;
             background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
             color: #654321;
             border: 2px solid #D2B48C;
@@ -188,6 +205,7 @@
             background: linear-gradient(90deg, #D2B48C, #CD853F);
             transform-origin: left center;
             border-radius: 2px;
+            z-index: 1;
         }
 
         .conn1 {
@@ -220,26 +238,26 @@
 
         .conn5 {
             top: 50%;
-            left: 20%;
-            width: 200px;
+            left: 18%;
+            width: 220px;
         }
 
         .conn6 {
-            top: 50%;
-            right: 20%;
+            top: 45%;
+            right: 28%;
             width: 200px;
         }
 
         .conn7 {
             top: 32%;
-            left: 45%;
+            left: 46%;
             width: 100px;
             transform: rotate(-60deg);
         }
 
         .conn8 {
             bottom: 32%;
-            left: 45%;
+            left: 46%;
             width: 100px;
             transform: rotate(60deg);
         }
@@ -247,7 +265,7 @@
         .floating-tips {
             position: absolute;
             top: 20px;
-            right: 20px;
+            left: 20px;
             background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
             padding: 15px;
             border-radius: 10px;
@@ -256,6 +274,7 @@
             max-width: 200px;
             border: 2px solid #D2B48C;
             animation: fadeIn 3s ease-in;
+            z-index: 5;
         }
 
         @keyframes fadeIn {
@@ -263,7 +282,13 @@
             100% { opacity: 1; }
         }
 
-        @media (max-width: 1200px) {
+        .speaker-name {
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 3px;
+        }
+
+        @media (max-width: 1600px) {
             .mindmap-container {
                 min-width: 100%;
                 overflow-x: scroll;
@@ -342,13 +367,79 @@
             </div>
         </div>
 
-        <!-- Đối thoại -->
+        <!-- Đối thoại đầy đủ -->
         <div class="branch dialogue">
-            <div class="branch-title">🗣️ ĐỐI THOẠI</div>
+            <div class="branch-title">🗣️ HỘI THOẠI - ALAN & MARY</div>
             <div class="branch-content">
-                <div><strong>Alan & Mary</strong></div>
-                <div style="margin-top: 5px;"><span class="chinese">你在哪儿长大的？</span><br><span class="pinyin">Nǐ zài nǎr zhǎngdà de?</span><br><span class="meaning">Bạn lớn lên ở đâu?</span></div>
-                <div style="margin-top: 8px;"><span class="chinese">我是在西班牙长大的</span><br><span class="pinyin">Wǒ shì zài Xībānyá zhǎngdà de</span><br><span class="meaning">Tôi lớn lên ở Tây Ban Nha</span></div>
+                <div class="dialogue-line">
+                    <div class="speaker-name">Mary:</div>
+                    <div><span class="chinese">艾伦，你在哪儿长大的？</span></div>
+                    <div><span class="pinyin">Āilún, nǐ zài nǎr zhǎngdà de?</span></div>
+                    <div><span class="meaning">Alan, bạn lớn lên ở đâu?</span></div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-name">Alan:</div>
+                    <div><span class="chinese">我是在西班牙长大的。</span></div>
+                    <div><span class="pinyin">Wǒ shì zài Xībānyá zhǎngdà de.</span></div>
+                    <div><span class="meaning">Tôi lớn lên ở Tây Ban Nha.</span></div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-name">Mary:</div>
+                    <div><span class="chinese">你也是在西班牙出生的吗？</span></div>
+                    <div><span class="pinyin">Nǐ yě shì zài Xībānyá chūshēng de ma?</span></div>
+                    <div><span class="meaning">Bạn cũng sinh ra ở Tây Ban Nha à?</span></div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-name">Alan:</div>
+                    <div><span class="chinese">不是，我是在英国出生的。</span></div>
+                    <div><span class="pinyin">Bú shì, wǒ shì zài Yīngguó chūshēng de.</span></div>
+                    <div><span class="meaning">Không, tôi sinh ra ở Anh.</span></div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-name">Mary:</div>
+                    <div><span class="chinese">那你是什么时候来这儿的？</span></div>
+                    <div><span class="pinyin">Nà nǐ shì shénme shíhou lái zhèr de?</span></div>
+                    <div><span class="meaning">Vậy bạn đến đây khi nào?</span></div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-name">Alan:</div>
+                    <div><span class="chinese">2012年，我来这儿上大学。</span></div>
+                    <div><span class="pinyin">Èr líng yī èr nián, wǒ lái zhèr shàng dàxué.</span></div>
+                    <div><span class="meaning">Năm 2012, tôi đến đây học đại học.</span></div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-name">Mary:</div>
+                    <div><span class="chinese">你大学的专业是什么？</span></div>
+                    <div><span class="pinyin">Nǐ dàxué de zhuānyè shì shénme?</span></div>
+                    <div><span class="meaning">Chuyên ngành đại học của bạn là gì?</span></div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-name">Alan:</div>
+                    <div><span class="chinese">新闻。毕业以后我在一家电视台当了五年记者。</span></div>
+                    <div><span class="pinyin">Xīnwén. Bìyè yǐhòu wǒ zài yì jiā diànshìtái dāngle wǔ nián jìzhě.</span></div>
+                    <div><span class="meaning">Ngành báo chí. Sau khi tốt nghiệp, tôi làm phóng viên ở một đài truyền hình trong 5 năm.</span></div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-name">Mary:</div>
+                    <div><span class="chinese">那现在你怎么不当记者了？</span></div>
+                    <div><span class="pinyin">Nà xiànzài nǐ zěnme bù dāng jìzhě le?</span></div>
+                    <div><span class="meaning">Vậy sao bây giờ bạn không làm phóng viên nữa?</span></div>
+                </div>
+
+                <div class="dialogue-line">
+                    <div class="speaker-name">Alan:</div>
+                    <div><span class="chinese">当记者太辛苦了，常常要出差。我现在想当作家。</span></div>
+                    <div><span class="pinyin">Dāng jìzhě tài xīnkǔ le, chángcháng yào chūchāi. Wǒ xiànzài xiǎng dāng zuòjiā.</span></div>
+                    <div><span class="meaning">Làm phóng viên vất vả quá, thường xuyên phải đi công tác. Giờ tôi muốn trở thành nhà văn.</span></div>
+                </div>
             </div>
         </div>
 
@@ -387,8 +478,10 @@
         document.querySelectorAll('.branch').forEach(branch => {
             branch.addEventListener('click', function() {
                 this.style.transform = 'scale(1.1)';
+                this.style.zIndex = '20';
                 setTimeout(() => {
                     this.style.transform = 'scale(1)';
+                    this.style.zIndex = '5';
                 }, 200);
             });
         });
@@ -404,6 +497,15 @@
                 this.style.background = 'linear-gradient(90deg, #D2B48C, #CD853F)';
                 this.style.height = '3px';
             });
+        });
+
+        // Thêm hiệu ứng hover cho central node
+        document.querySelector('.central-node').addEventListener('mouseenter', function() {
+            this.style.transform = 'translate(-50%, -50%) scale(1.1)';
+        });
+
+        document.querySelector('.central-node').addEventListener('mouseleave', function() {
+            this.style.transform = 'translate(-50%, -50%) scale(1)';
         });
     </script>
 </body>
