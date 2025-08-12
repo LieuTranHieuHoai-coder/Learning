@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ đồ tư duy - Bài học tiếng Trung số 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        .mindmap-container {
+            width: 100%;
+            min-width: 1200px;
+            height: 800px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.3), rgba(160, 82, 45, 0.2));
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(210, 180, 140, 0.5);
+            padding: 40px;
+        }
+
+        .central-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 80px;
+            background: linear-gradient(45deg, #8B4513, #A0522D);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F5DEB3;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(139, 69, 19, 0.5);
+            border: 2px solid #D2B48C;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        .branch {
+            position: absolute;
+            background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
+            border-radius: 15px;
+            padding: 15px 20px;
+            box-shadow: 0 4px 20px rgba(139, 69, 19, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #D2B48C;
+        }
+
+        .branch:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(139, 69, 19, 0.4);
+            border-color: #CD853F;
+        }
+
+        .branch-title {
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .branch-content {
+            font-size: 12px;
+            color: #654321;
+            line-height: 1.4;
+        }
+
+        .chinese {
+            color: #8B0000;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .pinyin {
+            color: #4682B4;
+            font-style: italic;
+            font-size: 12px;
+        }
+
+        .meaning {
+            color: #228B22;
+            font-weight: 500;
+        }
+
+        /* Định vị các nhánh - Tông màu gỗ */
+        .vocab-time {
+            top: 15%;
+            left: 15%;
+            width: 180px;
+            background: linear-gradient(135deg, #DEB887, #F5DEB3);
+            color: #654321;
+            border: 2px solid #CD853F;
+        }
+
+        .vocab-education {
+            top: 15%;
+            right: 15%;
+            width: 180px;
+            background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
+            color: #654321;
+            border: 2px solid #D2B48C;
+        }
+
+        .vocab-career {
+            bottom: 15%;
+            left: 15%;
+            width: 180px;
+            background: linear-gradient(135deg, #DEB887, #F5DEB3);
+            color: #654321;
+            border: 2px solid #CD853F;
+        }
+
+        .vocab-grammar {
+            bottom: 15%;
+            right: 15%;
+            width: 180px;
+            background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
+            color: #654321;
+            border: 2px solid #D2B48C;
+        }
+
+        .sample-sentences {
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+            width: 160px;
+            background: linear-gradient(135deg, #DEB887, #F5DEB3);
+            color: #654321;
+            border: 2px solid #CD853F;
+        }
+
+        .dialogue {
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            width: 160px;
+            background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
+            color: #654321;
+            border: 2px solid #D2B48C;
+        }
+
+        .grammar-point {
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            background: linear-gradient(135deg, #DEB887, #F5DEB3);
+            color: #654321;
+            border: 2px solid #CD853F;
+        }
+
+        .practice {
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
+            color: #654321;
+            border: 2px solid #D2B48C;
+        }
+
+        /* Đường kết nối */
+        .connection {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, #D2B48C, #CD853F);
+            transform-origin: left center;
+            border-radius: 2px;
+        }
+
+        .conn1 {
+            top: 45%;
+            left: 30%;
+            width: 150px;
+            transform: rotate(-25deg);
+        }
+
+        .conn2 {
+            top: 45%;
+            right: 30%;
+            width: 150px;
+            transform: rotate(25deg);
+        }
+
+        .conn3 {
+            bottom: 45%;
+            left: 30%;
+            width: 150px;
+            transform: rotate(25deg);
+        }
+
+        .conn4 {
+            bottom: 45%;
+            right: 30%;
+            width: 150px;
+            transform: rotate(-25deg);
+        }
+
+        .conn5 {
+            top: 50%;
+            left: 20%;
+            width: 200px;
+        }
+
+        .conn6 {
+            top: 50%;
+            right: 20%;
+            width: 200px;
+        }
+
+        .conn7 {
+            top: 32%;
+            left: 45%;
+            width: 100px;
+            transform: rotate(-60deg);
+        }
+
+        .conn8 {
+            bottom: 32%;
+            left: 45%;
+            width: 100px;
+            transform: rotate(60deg);
+        }
+
+        .floating-tips {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #F5DEB3, #FAEBD7);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 12px;
+            color: #654321;
+            max-width: 200px;
+            border: 2px solid #D2B48C;
+            animation: fadeIn 3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 1200px) {
+            .mindmap-container {
+                min-width: 100%;
+                overflow-x: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mindmap-container">
+        <!-- Nút trung tâm -->
+        <div class="central-node">
+            <div>
+                Bài 3: 询问对方经历<br>
+                <small style="font-size: 12px;">Hỏi về kinh nghiệm</small>
+            </div>
+        </div>
+
+        <!-- Đường kết nối -->
+        <div class="connection conn1"></div>
+        <div class="connection conn2"></div>
+        <div class="connection conn3"></div>
+        <div class="connection conn4"></div>
+        <div class="connection conn5"></div>
+        <div class="connection conn6"></div>
+        <div class="connection conn7"></div>
+        <div class="connection conn8"></div>
+
+        <!-- Các nhánh từ vựng -->
+        <div class="branch vocab-time">
+            <div class="branch-title">⏰ THỜI GIAN</div>
+            <div class="branch-content">
+                <div><span class="chinese">长大</span> <span class="pinyin">zhǎngdà</span><br><span class="meaning">trưởng thành</span></div>
+                <div><span class="chinese">出生</span> <span class="pinyin">chūshēng</span><br><span class="meaning">được sinh ra</span></div>
+                <div><span class="chinese">时候</span> <span class="pinyin">shíhou</span><br><span class="meaning">lúc, khi</span></div>
+                <div><span class="chinese">来</span> <span class="pinyin">lái</span><br><span class="meaning">đến</span></div>
+            </div>
+        </div>
+
+        <div class="branch vocab-education">
+            <div class="branch-title">🎓 GIÁO DỤC</div>
+            <div class="branch-content">
+                <div><span class="chinese">大学</span> <span class="pinyin">dàxué</span><br><span class="meaning">đại học</span></div>
+                <div><span class="chinese">专业</span> <span class="pinyin">zhuānyè</span><br><span class="meaning">chuyên ngành</span></div>
+                <div><span class="chinese">毕业</span> <span class="pinyin">bìyè</span><br><span class="meaning">tốt nghiệp</span></div>
+                <div><span class="chinese">新闻</span> <span class="pinyin">xīnwén</span><br><span class="meaning">tin tức</span></div>
+            </div>
+        </div>
+
+        <div class="branch vocab-career">
+            <div class="branch-title">💼 NGHỀ NGHIỆP</div>
+            <div class="branch-content">
+                <div><span class="chinese">记者</span> <span class="pinyin">jìzhě</span><br><span class="meaning">phóng viên</span></div>
+                <div><span class="chinese">作家</span> <span class="pinyin">zuòjiā</span><br><span class="meaning">nhà văn</span></div>
+                <div><span class="chinese">电视台</span> <span class="pinyin">diànshìtái</span><br><span class="meaning">đài truyền hình</span></div>
+                <div><span class="chinese">辛苦</span> <span class="pinyin">xīnkǔ</span><br><span class="meaning">vất vả</span></div>
+                <div><span class="chinese">出差</span> <span class="pinyin">chūchāi</span><br><span class="meaning">đi công tác</span></div>
+            </div>
+        </div>
+
+        <div class="branch vocab-grammar">
+            <div class="branch-title">📝 NGỮ PHÁP</div>
+            <div class="branch-content">
+                <div><span class="chinese">那</span> <span class="pinyin">nà</span><br><span class="meaning">vậy, đó</span></div>
+                <div><span class="chinese">当</span> <span class="pinyin">dāng</span><br><span class="meaning">làm, đảm nhiệm</span></div>
+                <div><span class="chinese">家</span> <span class="pinyin">jiā</span><br><span class="meaning">lượng từ (công ty)</span></div>
+                <div><span class="chinese">想</span> <span class="pinyin">xiǎng</span><br><span class="meaning">muốn</span></div>
+            </div>
+        </div>
+
+        <!-- Mẫu câu -->
+        <div class="branch sample-sentences">
+            <div class="branch-title">💬 MẪU CÂU</div>
+            <div class="branch-content">
+                <div><span class="chinese">我是在英国出生的</span><br><span class="pinyin">Wǒ shì zài Yīngguó chūshēng de</span><br><span class="meaning">Tôi được sinh ra ở Anh</span></div>
+                <div style="margin-top: 8px;"><span class="chinese">你是什么时候来这儿的？</span><br><span class="pinyin">Nǐ shì shénme shíhou lái zhèr de?</span><br><span class="meaning">Bạn đến đây từ khi nào?</span></div>
+            </div>
+        </div>
+
+        <!-- Đối thoại -->
+        <div class="branch dialogue">
+            <div class="branch-title">🗣️ ĐỐI THOẠI</div>
+            <div class="branch-content">
+                <div><strong>Alan & Mary</strong></div>
+                <div style="margin-top: 5px;"><span class="chinese">你在哪儿长大的？</span><br><span class="pinyin">Nǐ zài nǎr zhǎngdà de?</span><br><span class="meaning">Bạn lớn lên ở đâu?</span></div>
+                <div style="margin-top: 8px;"><span class="chinese">我是在西班牙长大的</span><br><span class="pinyin">Wǒ shì zài Xībānyá zhǎngdà de</span><br><span class="meaning">Tôi lớn lên ở Tây Ban Nha</span></div>
+            </div>
+        </div>
+
+        <!-- Điểm ngữ pháp -->
+        <div class="branch grammar-point">
+            <div class="branch-title">🔑 NGỮ PHÁP</div>
+            <div class="branch-content">
+                <div><strong>是...的</strong> (nhấn mạnh nơi chốn/thời gian)</div>
+                <div style="margin-top: 5px;"><span class="chinese">我是在英国出生的</span><br><span class="pinyin">Wǒ shì zài Yīngguó chūshēng de</span></div>
+                <div style="margin-top: 8px;"><strong>在...当...</strong> (làm việc tại)</div>
+                <div><span class="chinese">在电视台当记者</span><br><span class="pinyin">zài diànshìtái dāng jìzhě</span><br><span class="meaning">làm phóng viên ở đài TV</span></div>
+            </div>
+        </div>
+
+        <!-- Thực hành -->
+        <div class="branch practice">
+            <div class="branch-title">🎯 BÀI TẬP</div>
+            <div class="branch-content">
+                <div><strong>Điền thông tin về Fangfang:</strong></div>
+                <div style="margin-top: 5px;"><span class="chinese">方方是在______出生的</span><br><span class="pinyin">Fāngfang shì zài ___ chūshēng de</span><br><span class="meaning">Fangfang sinh ra ở ___</span></div>
+                <div style="margin-top: 8px;"><span class="chinese">方方想当______</span><br><span class="pinyin">Fāngfang xiǎng dāng ___</span><br><span class="meaning">Fangfang muốn làm ___</span></div>
+            </div>
+        </div>
+
+        <!-- Ghi chú -->
+        <div class="floating-tips">
+            💡 <strong>Mẹo học:</strong><br>
+            • Tập trung vào thanh điệu<br>
+            • Thực hành với câu chuyện của chính bạn<br>
+            • Sử dụng cấu trúc "是...的"
+        </div>
+    </div>
+
+    <script>
+        // Thêm hiệu ứng tương tác
+        document.querySelectorAll('.branch').forEach(branch => {
+            branch.addEventListener('click', function() {
+                this.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+
+        // Hiệu ứng hover cho các kết nối
+        document.querySelectorAll('.connection').forEach(conn => {
+            conn.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(90deg, #CD853F, #DEB887)';
+                this.style.height = '4px';
+            });
+            
+            conn.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(90deg, #D2B48C, #CD853F)';
+                this.style.height = '3px';
+            });
+        });
+    </script>
+</body>
+</html>
